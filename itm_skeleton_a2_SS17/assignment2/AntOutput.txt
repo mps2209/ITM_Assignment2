@@ -192,3 +192,29 @@ H:\Uni\ITM2017\itm_skeleton_a2_SS17\assignment2\build.xml:45: Compile failed; se
 	at org.apache.tools.ant.Main.startAnt(Main.java:236)
 	at org.apache.tools.ant.launch.Launcher.run(Launcher.java:287)
 	at org.apache.tools.ant.launch.Launcher.main(Launcher.java:113)
+
+clean-thumbs:
+     [echo] Deleting thumbnail directory A:\Dokumente\Uni\ITM\Abgabe2\ITM_Assignment2\itm_skeleton_a2_SS17\assignment2\thumbnails and A:\Dokumente\Uni\ITM\Abgabe2\ITM_Assignment2\itm_skeleton_a2_SS17\assignment2\webapps\itm\media\md if existing
+
+clean-build:
+     [echo] Deleting build directory A:\Dokumente\Uni\ITM\Abgabe2\ITM_Assignment2\itm_skeleton_a2_SS17\assignment2\build and A:\Dokumente\Uni\ITM\Abgabe2\ITM_Assignment2\itm_skeleton_a2_SS17\assignment2\webapps\itm\WEB-INF\classes if existing
+   [delete] Deleting directory A:\Dokumente\Uni\ITM\Abgabe2\ITM_Assignment2\itm_skeleton_a2_SS17\assignment2\build
+
+clean:
+
+init:
+    [mkdir] Created dir: A:\Dokumente\Uni\ITM\Abgabe2\ITM_Assignment2\itm_skeleton_a2_SS17\assignment2\build
+
+compile:
+    [javac] A:\Dokumente\Uni\ITM\Abgabe2\ITM_Assignment2\itm_skeleton_a2_SS17\assignment2\build.xml:45: warning: 'includeantruntime' was not set, defaulting to build.sysclasspath=last; set to false for repeatable builds
+    [javac] Compiling 18 source files to A:\Dokumente\Uni\ITM\Abgabe2\ITM_Assignment2\itm_skeleton_a2_SS17\assignment2\build
+
+build:
+    [mkdir] Created dir: A:\Dokumente\Uni\ITM\Abgabe2\ITM_Assignment2\itm_skeleton_a2_SS17\assignment2\webapps\itm\WEB-INF\lib
+    [mkdir] Created dir: A:\Dokumente\Uni\ITM\Abgabe2\ITM_Assignment2\itm_skeleton_a2_SS17\assignment2\webapps\itm\infovis
+      [jar] Building jar: A:\Dokumente\Uni\ITM\Abgabe2\ITM_Assignment2\itm_skeleton_a2_SS17\assignment2\webapps\itm\WEB-INF\lib\itm.jar
+     [copy] Copying 16 files to A:\Dokumente\Uni\ITM\Abgabe2\ITM_Assignment2\itm_skeleton_a2_SS17\assignment2\webapps\itm\WEB-INF\lib
+     [copy] Copying 1 file to A:\Dokumente\Uni\ITM\Abgabe2\ITM_Assignment2\itm_skeleton_a2_SS17\assignment2\webapps\itm\infovis
+     [copy] Copying 1 file to A:\Dokumente\Uni\ITM\Abgabe2\ITM_Assignment2\itm_skeleton_a2_SS17\assignment2\webapps\itm\infovis
+
+BUILD SUCCESSFUL
