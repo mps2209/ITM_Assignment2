@@ -1,5 +1,7 @@
 package itm.image;
 
+import java.awt.image.BufferedImage;
+
 /*******************************************************************************
     This file is part of the ITM course 2017
     (c) University of Vienna 2009-2017
@@ -9,6 +11,12 @@ import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 
+import javax.imageio.IIOImage;
+import javax.imageio.ImageIO;
+import javax.imageio.ImageWriteParam;
+import javax.imageio.ImageWriter;
+import javax.imageio.stream.ImageOutputStream;
+
 /**
     This class converts images into various image formats (BMP, PNG, ...).
     It can be called with 3 parameters, an input filename/directory, an output directory and a target format.
@@ -16,11 +24,13 @@ import java.util.ArrayList;
     
     If the input file/dir or the output directory do not exist, an exception is thrown.
 */
-public class ImageConverter {
+public class ImageConverter 
+{
 
     public final static String BMP = "bmp";
     public final static String PNG = "png";
     public final static String JPEG = "jpeg";
+    public final static String JPG = "jpg";
    
     /**
         Constructor.
@@ -104,13 +114,48 @@ public class ImageConverter {
         // ***************************************************************
 
         // load the input image
+        BufferedImage img = null;
+        try {
+            img = ImageIO.read(input);
+        } catch (IOException e) {
+        }
        
-        // encode and save the image 
-
+        // encode and save the image
+        //also changing the ending of the file to the desired format
+        String name= input.getName();
+        
+        /* added this to remove the original extension. apparently this is not needed but i use it in MetadataGenerator
+         * int pos = name.lastIndexOf(".");
+        if(pos>0){
+        	name= name.substring(0,pos);
+        }*/
+        if (targetFormat.equalsIgnoreCase( JPEG )){
+        	ImageWriter writer = ImageIO.getImageWritersByFormatName("jpeg").next();
+        	ImageWriteParam param = writer.getDefaultWriteParam();
+        	param.setCompressionMode(ImageWriteParam.MODE_EXPLICIT); 
+        	param.setCompressionQuality(quality);
+        	String newname= name + "-"+ quality +"." + targetFormat;          
+            outputFile=new File(output.getAbsolutePath() +"/"+ newname);
+            ImageOutputStream outputStream = ImageIO.createImageOutputStream(outputFile);
+        	writer.setOutput(outputStream);
+        	try{writer.write(null, new IIOImage(img, null, null), param);}
+        		catch(IOException e){        		
+        	}
+        	
+        }
+        else{
+        String newname= name +"." + targetFormat;
+        
+        outputFile=new File(output.getAbsolutePath() +"/"+ newname);
+        try{
+        	ImageIO.write(img, targetFormat, outputFile);
+        } catch (IOException e) {       	
+        }
+        
+        }
         return outputFile;
     }
-    
-        
+
     /**
         Main method. Parses the commandline parameters and prints usage information if required.
     */
@@ -129,8 +174,9 @@ public class ImageConverter {
         File fo = new File( args[1] );
         String targetFormat = args[2];
         float quality = 1.0f;
-        if ( args.length > 3 )
+        if ( args.length > 3 ) {
         	quality = Float.parseFloat( args[3] );
+        }
 
         System.out.println( "converting " + fi.getAbsolutePath() + " to " + fo.getAbsolutePath() );
         ImageConverter converter = new ImageConverter();
