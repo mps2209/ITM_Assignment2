@@ -22,10 +22,12 @@ import javax.media.format.AudioFormat;
 import javax.media.format.VideoFormat;
 import javax.media.protocol.DataSource;
 
-/*import com.xuggle.xuggler.IContainer;
+
 import com.xuggle.xuggler.IStream;
 import com.xuggle.xuggler.IStreamCoder;
-import com.xuggle.xuggler.ICodec.Type;*/
+import com.xuggle.mediatool.IMediaReader;
+import com.xuggle.mediatool.ToolFactory;
+import com.xuggle.xuggler.ICodec.Type;
 
 /**
  * This class reads video files, extracts metadata for both the audio and the
@@ -137,15 +139,15 @@ public class VideoMetadataGenerator {
 				media.readFromFile(outputFile);
 				return media;
 			}
-
+		
 		// ***************************************************************
 		// Fill in your code here!
 		// ***************************************************************
 		
-		
+	
 		// create video media object
 		VideoMedia media = (VideoMedia) MediaFactory.createMedia(input);
-
+		
 		// set video and audio stream metadata 
 		
 		// add video tag

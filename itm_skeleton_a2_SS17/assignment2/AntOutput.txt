@@ -291,3 +291,119 @@ compile:
     [javac] A:\Dokumente\Uni\ITM\Abgabe2\ITM_Assignment2\itm_skeleton_a2_SS17\assignment2\build.xml:45: warning: 'includeantruntime' was not set, defaulting to build.sysclasspath=last; set to false for repeatable builds
 
 BUILD SUCCESSFUL
+
+clean-thumbs:
+     [echo] Deleting thumbnail directory A:\Dokumente\Uni\ITM\Abgabe2\ITM_Assignment2\itm_skeleton_a2_SS17\assignment2\thumbnails and A:\Dokumente\Uni\ITM\Abgabe2\ITM_Assignment2\itm_skeleton_a2_SS17\assignment2\webapps\itm\media\md if existing
+
+clean-build:
+     [echo] Deleting build directory A:\Dokumente\Uni\ITM\Abgabe2\ITM_Assignment2\itm_skeleton_a2_SS17\assignment2\build and A:\Dokumente\Uni\ITM\Abgabe2\ITM_Assignment2\itm_skeleton_a2_SS17\assignment2\webapps\itm\WEB-INF\classes if existing
+   [delete] Deleting directory A:\Dokumente\Uni\ITM\Abgabe2\ITM_Assignment2\itm_skeleton_a2_SS17\assignment2\build
+
+clean:
+
+init:
+    [mkdir] Created dir: A:\Dokumente\Uni\ITM\Abgabe2\ITM_Assignment2\itm_skeleton_a2_SS17\assignment2\build
+
+compile:
+    [javac] A:\Dokumente\Uni\ITM\Abgabe2\ITM_Assignment2\itm_skeleton_a2_SS17\assignment2\build.xml:45: warning: 'includeantruntime' was not set, defaulting to build.sysclasspath=last; set to false for repeatable builds
+    [javac] Compiling 18 source files to A:\Dokumente\Uni\ITM\Abgabe2\ITM_Assignment2\itm_skeleton_a2_SS17\assignment2\build
+    [javac] A:\Dokumente\Uni\ITM\Abgabe2\ITM_Assignment2\itm_skeleton_a2_SS17\assignment2\java\itm\video\VideoMetadataGenerator.java:25: error: package com.xuggle does not exist
+    [javac] import com.xuggle.mediatool;
+    [javac]                  ^
+    [javac] A:\Dokumente\Uni\ITM\Abgabe2\ITM_Assignment2\itm_skeleton_a2_SS17\assignment2\java\itm\video\VideoMetadataGenerator.java:148: error: cannot find symbol
+    [javac] 		IMediaReader reader = ToolFactory.newReader(media);
+    [javac] 		^
+    [javac]   symbol:   class IMediaReader
+    [javac]   location: class VideoMetadataGenerator
+    [javac] A:\Dokumente\Uni\ITM\Abgabe2\ITM_Assignment2\itm_skeleton_a2_SS17\assignment2\java\itm\video\VideoMetadataGenerator.java:148: error: cannot find symbol
+    [javac] 		IMediaReader reader = ToolFactory.newReader(media);
+    [javac] 		                      ^
+    [javac]   symbol:   variable ToolFactory
+    [javac]   location: class VideoMetadataGenerator
+    [javac] 3 errors
+
+BUILD FAILED
+
+A:\Dokumente\Uni\ITM\Abgabe2\ITM_Assignment2\itm_skeleton_a2_SS17\assignment2\build.xml:45: Compile failed; see the compiler error output for details.
+	at org.apache.tools.ant.taskdefs.Javac.compile(Javac.java:1416)
+	at org.apache.tools.ant.taskdefs.Javac.execute(Javac.java:1121)
+	at org.apache.tools.ant.UnknownElement.execute(UnknownElement.java:293)
+	at sun.reflect.GeneratedMethodAccessor4.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:497)
+	at org.apache.tools.ant.dispatch.DispatchUtils.execute(DispatchUtils.java:106)
+	at org.apache.tools.ant.Task.perform(Task.java:348)
+	at org.apache.tools.ant.Target.execute(Target.java:435)
+	at org.apache.tools.ant.Target.performTasks(Target.java:456)
+	at org.apache.tools.ant.Project.executeSortedTargets(Project.java:1405)
+	at org.apache.tools.ant.Project.executeTarget(Project.java:1376)
+	at org.apache.tools.ant.helper.DefaultExecutor.executeTargets(DefaultExecutor.java:41)
+	at org.apache.tools.ant.Project.executeTargets(Project.java:1260)
+	at org.apache.tools.ant.Main.runBuild(Main.java:857)
+	at org.apache.tools.ant.Main.startAnt(Main.java:236)
+	at org.apache.tools.ant.launch.Launcher.run(Launcher.java:287)
+	at org.apache.tools.ant.launch.Launcher.main(Launcher.java:113)
+
+clean-thumbs:
+     [echo] Deleting thumbnail directory A:\Dokumente\Uni\ITM\Abgabe2\ITM_Assignment2\itm_skeleton_a2_SS17\assignment2\thumbnails and A:\Dokumente\Uni\ITM\Abgabe2\ITM_Assignment2\itm_skeleton_a2_SS17\assignment2\webapps\itm\media\md if existing
+
+clean-build:
+     [echo] Deleting build directory A:\Dokumente\Uni\ITM\Abgabe2\ITM_Assignment2\itm_skeleton_a2_SS17\assignment2\build and A:\Dokumente\Uni\ITM\Abgabe2\ITM_Assignment2\itm_skeleton_a2_SS17\assignment2\webapps\itm\WEB-INF\classes if existing
+   [delete] Deleting directory A:\Dokumente\Uni\ITM\Abgabe2\ITM_Assignment2\itm_skeleton_a2_SS17\assignment2\build
+
+clean:
+
+init:
+    [mkdir] Created dir: A:\Dokumente\Uni\ITM\Abgabe2\ITM_Assignment2\itm_skeleton_a2_SS17\assignment2\build
+
+compile:
+    [javac] A:\Dokumente\Uni\ITM\Abgabe2\ITM_Assignment2\itm_skeleton_a2_SS17\assignment2\build.xml:45: warning: 'includeantruntime' was not set, defaulting to build.sysclasspath=last; set to false for repeatable builds
+    [javac] Compiling 18 source files to A:\Dokumente\Uni\ITM\Abgabe2\ITM_Assignment2\itm_skeleton_a2_SS17\assignment2\build
+    [javac] A:\Dokumente\Uni\ITM\Abgabe2\ITM_Assignment2\itm_skeleton_a2_SS17\assignment2\java\itm\video\VideoMetadataGenerator.java:25: error: package com.xuggle does not exist
+    [javac] import com.xuggle.mediatool;
+    [javac]                  ^
+    [javac] 1 error
+
+BUILD FAILED
+
+A:\Dokumente\Uni\ITM\Abgabe2\ITM_Assignment2\itm_skeleton_a2_SS17\assignment2\build.xml:45: Compile failed; see the compiler error output for details.
+	at org.apache.tools.ant.taskdefs.Javac.compile(Javac.java:1416)
+	at org.apache.tools.ant.taskdefs.Javac.execute(Javac.java:1121)
+	at org.apache.tools.ant.UnknownElement.execute(UnknownElement.java:293)
+	at sun.reflect.GeneratedMethodAccessor4.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:497)
+	at org.apache.tools.ant.dispatch.DispatchUtils.execute(DispatchUtils.java:106)
+	at org.apache.tools.ant.Task.perform(Task.java:348)
+	at org.apache.tools.ant.Target.execute(Target.java:435)
+	at org.apache.tools.ant.Target.performTasks(Target.java:456)
+	at org.apache.tools.ant.Project.executeSortedTargets(Project.java:1405)
+	at org.apache.tools.ant.Project.executeTarget(Project.java:1376)
+	at org.apache.tools.ant.helper.DefaultExecutor.executeTargets(DefaultExecutor.java:41)
+	at org.apache.tools.ant.Project.executeTargets(Project.java:1260)
+	at org.apache.tools.ant.Main.runBuild(Main.java:857)
+	at org.apache.tools.ant.Main.startAnt(Main.java:236)
+	at org.apache.tools.ant.launch.Launcher.run(Launcher.java:287)
+	at org.apache.tools.ant.launch.Launcher.main(Launcher.java:113)
+
+clean-thumbs:
+     [echo] Deleting thumbnail directory A:\Dokumente\Uni\ITM\Abgabe2\ITM_Assignment2\itm_skeleton_a2_SS17\assignment2\thumbnails and A:\Dokumente\Uni\ITM\Abgabe2\ITM_Assignment2\itm_skeleton_a2_SS17\assignment2\webapps\itm\media\md if existing
+
+clean-build:
+     [echo] Deleting build directory A:\Dokumente\Uni\ITM\Abgabe2\ITM_Assignment2\itm_skeleton_a2_SS17\assignment2\build and A:\Dokumente\Uni\ITM\Abgabe2\ITM_Assignment2\itm_skeleton_a2_SS17\assignment2\webapps\itm\WEB-INF\classes if existing
+   [delete] Deleting directory A:\Dokumente\Uni\ITM\Abgabe2\ITM_Assignment2\itm_skeleton_a2_SS17\assignment2\build
+
+clean:
+
+init:
+    [mkdir] Created dir: A:\Dokumente\Uni\ITM\Abgabe2\ITM_Assignment2\itm_skeleton_a2_SS17\assignment2\build
+
+compile:
+    [javac] A:\Dokumente\Uni\ITM\Abgabe2\ITM_Assignment2\itm_skeleton_a2_SS17\assignment2\build.xml:45: warning: 'includeantruntime' was not set, defaulting to build.sysclasspath=last; set to false for repeatable builds
+    [javac] Compiling 18 source files to A:\Dokumente\Uni\ITM\Abgabe2\ITM_Assignment2\itm_skeleton_a2_SS17\assignment2\build
+
+build:
+      [jar] Building jar: A:\Dokumente\Uni\ITM\Abgabe2\ITM_Assignment2\itm_skeleton_a2_SS17\assignment2\webapps\itm\WEB-INF\lib\itm.jar
+     [copy] Copying 1 file to A:\Dokumente\Uni\ITM\Abgabe2\ITM_Assignment2\itm_skeleton_a2_SS17\assignment2\webapps\itm\infovis
+
+BUILD SUCCESSFUL
