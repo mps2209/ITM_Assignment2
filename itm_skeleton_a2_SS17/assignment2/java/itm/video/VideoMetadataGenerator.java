@@ -22,10 +22,10 @@ import javax.media.format.AudioFormat;
 import javax.media.format.VideoFormat;
 import javax.media.protocol.DataSource;
 
-import com.xuggle.xuggler.IContainer;
+/*import com.xuggle.xuggler.IContainer;
 import com.xuggle.xuggler.IStream;
 import com.xuggle.xuggler.IStreamCoder;
-import com.xuggle.xuggler.ICodec.Type;
+import com.xuggle.xuggler.ICodec.Type;*/
 
 /**
  * This class reads video files, extracts metadata for both the audio and the

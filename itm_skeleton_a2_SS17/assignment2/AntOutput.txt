@@ -218,3 +218,76 @@ build:
      [copy] Copying 1 file to A:\Dokumente\Uni\ITM\Abgabe2\ITM_Assignment2\itm_skeleton_a2_SS17\assignment2\webapps\itm\infovis
 
 BUILD SUCCESSFUL
+
+clean-thumbs:
+     [echo] Deleting thumbnail directory A:\Dokumente\Uni\ITM\Abgabe2\ITM_Assignment2\itm_skeleton_a2_SS17\assignment2\thumbnails and A:\Dokumente\Uni\ITM\Abgabe2\ITM_Assignment2\itm_skeleton_a2_SS17\assignment2\webapps\itm\media\md if existing
+
+clean-build:
+     [echo] Deleting build directory A:\Dokumente\Uni\ITM\Abgabe2\ITM_Assignment2\itm_skeleton_a2_SS17\assignment2\build and A:\Dokumente\Uni\ITM\Abgabe2\ITM_Assignment2\itm_skeleton_a2_SS17\assignment2\webapps\itm\WEB-INF\classes if existing
+   [delete] Deleting directory A:\Dokumente\Uni\ITM\Abgabe2\ITM_Assignment2\itm_skeleton_a2_SS17\assignment2\build
+
+clean:
+
+init:
+    [mkdir] Created dir: A:\Dokumente\Uni\ITM\Abgabe2\ITM_Assignment2\itm_skeleton_a2_SS17\assignment2\build
+
+compile:
+    [javac] A:\Dokumente\Uni\ITM\Abgabe2\ITM_Assignment2\itm_skeleton_a2_SS17\assignment2\build.xml:45: warning: 'includeantruntime' was not set, defaulting to build.sysclasspath=last; set to false for repeatable builds
+    [javac] Compiling 18 source files to A:\Dokumente\Uni\ITM\Abgabe2\ITM_Assignment2\itm_skeleton_a2_SS17\assignment2\build
+
+build:
+      [jar] Building jar: A:\Dokumente\Uni\ITM\Abgabe2\ITM_Assignment2\itm_skeleton_a2_SS17\assignment2\webapps\itm\WEB-INF\lib\itm.jar
+     [copy] Copying 1 file to A:\Dokumente\Uni\ITM\Abgabe2\ITM_Assignment2\itm_skeleton_a2_SS17\assignment2\webapps\itm\WEB-INF\lib
+     [copy] Copying 1 file to A:\Dokumente\Uni\ITM\Abgabe2\ITM_Assignment2\itm_skeleton_a2_SS17\assignment2\webapps\itm\infovis
+
+BUILD SUCCESSFUL
+
+    ITM build file
+	
+Main targets:
+
+ AudioMetadataGenerator   test the audio metadata generator. Example: ant.bat AudioMetadataGenerator -Dinput=media/audio/ -Doutput=test/
+ AudioPlayer              play an audio file. Example: ant.bat AudioPlayer -Dinput=media/audio/mySong.mp3
+ AudioThumbGenerator      test the audio thumbnail generator. Example: ant.bat AudioThumbGenerator -Dinput=media/audio/ -Doutput=test/ -Dlength=10
+ ImageHistogramGenerator  test the ImageHistogramGenerator: example: ant.bat ImageHistogramGenerator -Dinput=media/img/ -Doutput=test/ -Dbins=256
+ ImageMetadataGenerator   test the ImageMetadataGenerator: example: ant.bat ImageMetadataGenerator -Dinput=media/img/ -Doutput=test/
+ ImageThumbnailGenerator  test the ImageThumbnailGenerator: example: ant.bat ImageThumbnailGenerator -Dinput=media/img/ -Doutput=test/ -Drotation=90
+ VideoFrameGrabber        test the video thumbnail generator. Example: ant.bat VideoFrameGrabber -Dinput=media/video/ -Doutput=test/
+ VideoMetadataGenerator   test the video metadata generator. Example: ant.bat VideoMetadataGenerator -Dinput=media/video/ -Doutput=test/
+ VideoThumbnailGenerator  test the video thumb generator. Example: ant.bat VideoThumbnailGenerator -Dinput=media/video/panda.avi -Doutput=test/
+ build                    Build the webapp
+ clean                    complete clean up
+ clean-build              clean build directories
+ clean-thumbs             clean all generated thumbnails and metadata
+ compile                  compile the source
+ javadoc                  creates the javadoc
+Default target: build
+
+clean-thumbs:
+     [echo] Deleting thumbnail directory A:\Dokumente\Uni\ITM\Abgabe2\ITM_Assignment2\itm_skeleton_a2_SS17\assignment2\thumbnails and A:\Dokumente\Uni\ITM\Abgabe2\ITM_Assignment2\itm_skeleton_a2_SS17\assignment2\webapps\itm\media\md if existing
+
+clean-build:
+     [echo] Deleting build directory A:\Dokumente\Uni\ITM\Abgabe2\ITM_Assignment2\itm_skeleton_a2_SS17\assignment2\build and A:\Dokumente\Uni\ITM\Abgabe2\ITM_Assignment2\itm_skeleton_a2_SS17\assignment2\webapps\itm\WEB-INF\classes if existing
+   [delete] Deleting directory A:\Dokumente\Uni\ITM\Abgabe2\ITM_Assignment2\itm_skeleton_a2_SS17\assignment2\build
+
+clean:
+
+init:
+    [mkdir] Created dir: A:\Dokumente\Uni\ITM\Abgabe2\ITM_Assignment2\itm_skeleton_a2_SS17\assignment2\build
+
+compile:
+    [javac] A:\Dokumente\Uni\ITM\Abgabe2\ITM_Assignment2\itm_skeleton_a2_SS17\assignment2\build.xml:45: warning: 'includeantruntime' was not set, defaulting to build.sysclasspath=last; set to false for repeatable builds
+    [javac] Compiling 18 source files to A:\Dokumente\Uni\ITM\Abgabe2\ITM_Assignment2\itm_skeleton_a2_SS17\assignment2\build
+
+build:
+      [jar] Building jar: A:\Dokumente\Uni\ITM\Abgabe2\ITM_Assignment2\itm_skeleton_a2_SS17\assignment2\webapps\itm\WEB-INF\lib\itm.jar
+     [copy] Copying 1 file to A:\Dokumente\Uni\ITM\Abgabe2\ITM_Assignment2\itm_skeleton_a2_SS17\assignment2\webapps\itm\infovis
+
+BUILD SUCCESSFUL
+
+init:
+
+compile:
+    [javac] A:\Dokumente\Uni\ITM\Abgabe2\ITM_Assignment2\itm_skeleton_a2_SS17\assignment2\build.xml:45: warning: 'includeantruntime' was not set, defaulting to build.sysclasspath=last; set to false for repeatable builds
+
+BUILD SUCCESSFUL
