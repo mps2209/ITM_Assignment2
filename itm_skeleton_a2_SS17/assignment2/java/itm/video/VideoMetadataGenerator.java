@@ -22,7 +22,7 @@ import javax.media.format.AudioFormat;
 import javax.media.format.VideoFormat;
 import javax.media.protocol.DataSource;
 
-
+import com.xuggle.xuggler.IContainer;
 import com.xuggle.xuggler.IStream;
 import com.xuggle.xuggler.IStreamCoder;
 import com.xuggle.mediatool.IMediaReader;
@@ -147,9 +147,17 @@ public class VideoMetadataGenerator {
 	
 		// create video media object
 		VideoMedia media = (VideoMedia) MediaFactory.createMedia(input);
+		IContainer container = IContainer.make();
 		
+		int result= container.open(input.toString(), IContainer.Type.READ,null);
+		if (result<0){throw new RuntimeException("Failed to open media file");
+		}
+		int numStreams = container.getNumStreams();
+		long duration = container.getDuration();
+		long fileSize = container.getFileSize();
+		long bitRate = container.getBitRate();
+
 		// set video and audio stream metadata 
-		
 		// add video tag
 
 		// write metadata
