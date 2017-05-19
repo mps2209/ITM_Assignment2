@@ -10,6 +10,7 @@ import itm.model.VideoMedia;
 
 import java.io.File;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.net.URL;
 import java.util.ArrayList;
 
@@ -27,7 +28,7 @@ import com.xuggle.xuggler.IStream;
 import com.xuggle.xuggler.IStreamCoder;
 import com.xuggle.mediatool.IMediaReader;
 import com.xuggle.mediatool.ToolFactory;
-import com.xuggle.xuggler.ICodec.Type;
+import com.xuggle.xuggler.ICodec;
 
 /**
  * This class reads video files, extracts metadata for both the audio and the
@@ -147,21 +148,51 @@ public class VideoMetadataGenerator {
 	
 		// create video media object
 		VideoMedia media = (VideoMedia) MediaFactory.createMedia(input);
-		IContainer container = IContainer.make();
 		
+		//Opening IContainer. streams is the number of bitStreams. with Icodec i determine if its an audio or the video stream and then i add the variables to the media object
+		IContainer container = IContainer.make();		
 		int result= container.open(input.toString(), IContainer.Type.READ,null);
-		if (result<0){throw new RuntimeException("Failed to open media file");
+		if (result<0){throw new RuntimeException("Failed to open media file (0 Streams)");
 		}
-		int numStreams = container.getNumStreams();
+		int streams = container.getNumStreams();
 		long duration = container.getDuration();
 		long fileSize = container.getFileSize();
 		long bitRate = container.getBitRate();
-
+		
+		//Iterating the streams
+		for(int i=0; i<streams; i++){
+			IStream stream = container.getStream(i);
+			IStreamCoder coder = stream.getStreamCoder();
+			
+		//setting Variables in media object
+		if (coder.getCodecType() == ICodec.Type.CODEC_TYPE_AUDIO) {
+			media.setAudcodecID(coder.getCodecID().toString());
+			media.setAudioChannels(media.getAudioChannels()+1);
+			media.setAudioSampleRate(coder.getSampleRate());
+			media.setAudioBitRate(coder.getBitRate());
+			/*int audcodecID;
+			int audioChannels;
+			int audioSampleRate;
+			int audioBitRate;*/
+		}
+		if (coder.getCodecType() == ICodec.Type.CODEC_TYPE_VIDEO) {
+			media.setVidcodecID(coder.getCodecID().toString());
+			media.setVideoCodec(coder.getCodec().getName());
+			media.setVideoFrameRate(Math.rint(coder.getFrameRate().getDouble()));
+			media.setVideoHeight(coder.getHeight());
+			media.setVideoWidth(coder.getWidth());
+			media.setVideoLength(duration/1000000);
+			
+		}
+		}
 		// set video and audio stream metadata 
 		// add video tag
+		media.addTag("video");
 
 		// write metadata
-		
+        try(PrintWriter out = new PrintWriter(outputFile)){
+        out.print(media.serializeObject());
+        }
 		return media;
 	}
 
