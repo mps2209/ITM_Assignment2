@@ -11,10 +11,18 @@ Task 2.1: play (encoded) audio files
 
 -----------------------------------------------------------------
 
-* Describe the physical appearance of sound and how is it converted to digital sampled 
+* Describe the physical appearance of sound and how is it converted to digital
+sampled 
 audio. Explain how sampling works and the meaning of the terms amplitude, 
 sampling frequency, and quantization.
 
+Physical audio (analog) are soundwaves produced in the air.
+Digital audio is created by measuring the signals at equally spaced periods
+of time and convert each signal level to a binary number 
+
+Sampling frequency(hz) = The number of times that a measurement is made in a second
+Amplitude(db) = Intensity of an audio signal (Loudness)
+Quantization = Limits range of the signal into finite set of integers
 
 ------------------------------------------------------------------------------
 Task 2.2: generate "thumbnails" from audio files
@@ -23,8 +31,13 @@ Task 2.2: generate "thumbnails" from audio files
 
 * Why do WAV files require more storage space than MP3 files?
 
-* In the Java Sound API: what is a sample, what is a frame?
+WAV = lossless/uncompressed (100% accurate, bit-for-bit reproduction of source)
+MP3 = compressed/lossy (Depending on bitrate
 
+* In the Java Sound API: what is a sample, what is a frame?
+Sample = A snapshot of the sound pressure
+Frame = Set of samples for all channels
+sample size * number of channels = frame size
 
 ----------------------------------------------------------
 Task 2.3: extract/get audio metadata
@@ -34,8 +47,20 @@ Task 2.3: extract/get audio metadata
 * How is volume (i.e., how loud a sound is) reflected in analog and 
 digital audio signals? Why does it make sense to perform non-uniform quantization?
 
-* What is Pulse Code Modulation (PCM)?
+Analog audio signals => More Amplitude of voltage = More loudness
+Digital audio signals => Apply more Gain = More loudness
 
+If digital signal out of range of bit depth => Distortion
+
+Non uniform quantization provides better quantization for weak signals.
+Uniform quantization provides better quantization for high level signals.
+The human ear is sensitive to quantization error in small values so
+non uniform quantization is more preferable than uniform quantization.
+
+* What is Pulse Code Modulation (PCM)?
+Type of Quantization; Analog signal is first sampled, then each sample is quantized
+Sampling = Representation of analog signal
+Quantization = "Trimming" samples to certain value
 
 ----------------------------------------------------------
 Task 2.4: extract meta data from video files
@@ -50,7 +75,6 @@ Task 2.5: extract frames from video files
 
 * In what color space are images usually represented in video files? 
 What color space is usually used for computer images?
-
 
 Beim Multiplexen werden mehrer Datenströme zu einem zusammmengefasst und gesendet. Beim Demultiplexen werden die Datenströme wieder getrennt.
 Codec ist die kodierung von Daten bzw. Signalen die je nach Format auch (verlustbehaftete) Kompressionstechniken anwenden.
