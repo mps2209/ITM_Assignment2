@@ -1,5 +1,7 @@
 package itm.video;
 
+import java.awt.image.BufferedImage;
+
 /*******************************************************************************
  This file is part of the ITM course 2017
  (c) University of Vienna 2009-2017
@@ -8,6 +10,23 @@ package itm.video;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
+
+import javax.imageio.IIOImage;
+import javax.imageio.ImageIO;
+import javax.imageio.ImageWriteParam;
+import javax.imageio.ImageWriter;
+import javax.imageio.stream.ImageOutputStream;
+
+import com.xuggle.xuggler.Global;
+import com.xuggle.xuggler.ICodec;
+import com.xuggle.xuggler.IContainer;
+import com.xuggle.xuggler.IPacket;
+import com.xuggle.xuggler.IPixelFormat;
+import com.xuggle.xuggler.IStream;
+import com.xuggle.xuggler.IStreamCoder;
+import com.xuggle.xuggler.IVideoPicture;
+import com.xuggle.xuggler.IVideoResampler;
+import com.xuggle.xuggler.Utils;
 
 /**
  * 
@@ -20,7 +39,6 @@ import java.util.ArrayList;
  */
 
 public class VideoFrameGrabber {
-
 	/**
 	 * Constructor.
 	 */
@@ -98,7 +116,98 @@ public class VideoFrameGrabber {
 		// ***************************************************************
 		// Fill in your code here!
 		// ***************************************************************
+		//Quellen:https://github.com/artclarke/xuggle-xuggler/tree/master/src/com/xuggle/xuggler/demos
 
+	    if (!IVideoResampler.isSupported(IVideoResampler.Feature.FEATURE_COLORSPACECONVERSION))throw new RuntimeException("you must install the GPL version of Xuggler (with IVideoResampler" + " support) for this demo to work");
+	    //Opening the container
+	    IContainer container = IContainer.make();	    
+	    if (container.open(input.getPath(), IContainer.Type.READ, null) < 0) throw new IllegalArgumentException("could not open file: " + input.getName());
+        //testvariable to determine if i already wrote a pic
+	    boolean wrotePic= false;
+	    //some stream metadata
+	    int numStreams = container.getNumStreams();
+		long duration = container.getDuration();
+		long fileSize = container.getFileSize();
+		long bitRate = container.getBitRate();
+		//looking for the video stream
+	    int videoStreamId = -1;
+	    IStreamCoder videoCoder = null;
+	    for(int i = 0; i < numStreams; i++){
+	    	IStream stream = container.getStream(i);
+	    	IStreamCoder coder = stream.getStreamCoder();
+	    	if (coder.getCodecType() == ICodec.Type.CODEC_TYPE_VIDEO){
+	    		videoStreamId = i;
+	            videoCoder = coder;
+	            break;
+	    	}
+	    }
+	    if (videoStreamId == -1)throw new RuntimeException("could not find video stream in container: "+input.getName());
+	    if (videoCoder.open() < 0)throw new RuntimeException("could not open video decoder for container: " + input.getName());
+	    IVideoResampler resampler = null;
+	    //creating resampler if needed
+	    if (videoCoder.getPixelType() != IPixelFormat.Type.BGR24){
+	        resampler = IVideoResampler.make(videoCoder.getWidth(), videoCoder.getHeight(), IPixelFormat.Type.BGR24,
+	                						 videoCoder.getWidth(), videoCoder.getHeight(), videoCoder.getPixelType());
+	        if (resampler == null)throw new RuntimeException("could not create color space resampler for: " + input.getName());
+	    }
+	    
+	    IPacket packet = IPacket.make();
+	    //iterating through packets. If they belong to the videostream we grab them.
+	    while(container.readNextPacket(packet) >= 0){
+	    	if (packet.getStreamIndex() == videoStreamId){
+	            IVideoPicture picture = IVideoPicture.make(videoCoder.getPixelType(),videoCoder.getWidth(), videoCoder.getHeight());
+	            int offset = 0;
+	            while(offset < packet.getSize()){
+	            	int bytesDecoded = videoCoder.decodeVideo(picture, packet, offset);
+	            	if (bytesDecoded < 0)throw new RuntimeException("got error decoding video in: " + input.getName());
+	            	offset += bytesDecoded;
+	            	//if we got a complete picture we test for resampling
+	            	if (picture.isComplete()){
+	            		IVideoPicture newPic = picture;
+	            		//we resample the picture if needed
+	            		if (resampler != null){
+	                        newPic = IVideoPicture.make(resampler.getOutputPixelFormat(), picture.getWidth(),picture.getHeight());
+	                        if (resampler.resample(newPic, picture) < 0) throw new RuntimeException("could not resample video from: " + input.getName());
+	            		}
+	                    if (newPic.getPixelType() != IPixelFormat.Type.BGR24)throw new RuntimeException("could not decode video as BGR 24 bit data in: " + input.getName());
+	                    BufferedImage img = Utils.videoPictureToImage(newPic);
+	                    boolean writePic= false;
+	                    //we test if we already wrote a picture. if the picture is in the middle of the stream then we write it and set wrotePic to true hence we are finished
+	                    if(picture.getPts()>duration/2){writePic=true;}
+	                    if (writePic&& !wrotePic){
+	                    	wrotePic=true;
+	                    	System.out.println("timestamp: " + picture.getPts()/1000000);
+	            			//Writing the JPEG with my method from ImageConverter
+	            			ImageWriter writer = ImageIO.getImageWritersByFormatName("jpeg").next();
+	            	    	ImageWriteParam param = writer.getDefaultWriteParam();
+	            	    	param.setCompressionMode(ImageWriteParam.MODE_EXPLICIT);
+	            	    	float quality=1;
+	            	    	param.setCompressionQuality(quality);         
+	            	        ImageOutputStream outputStream = ImageIO.createImageOutputStream(outputFile);
+	            	    	writer.setOutput(outputStream);
+	            	    	try{writer.write(null, new IIOImage(img, null, null), param);}
+	            	    		catch(IOException e){        		
+	            	    	}
+	                    }
+	            	}
+	            }
+	    	}
+	    	//dropping the rest of the packages
+	        else{
+	          do {} while(false);
+	        }
+	    	
+	    }
+	    if (videoCoder != null)
+	    {
+	      videoCoder.close();
+	      videoCoder = null;
+	    }
+	    if (container !=null)
+	    {
+	      container.close();
+	      container = null;
+	    }
 		return outputFile;
 
 	}

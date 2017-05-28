@@ -144,7 +144,8 @@ public class VideoMetadataGenerator {
 		// ***************************************************************
 		// Fill in your code here!
 		// ***************************************************************
-		
+		//Quellen:https://github.com/artclarke/xuggle-xuggler/tree/master/src/com/xuggle/xuggler/demos
+
 	
 		// create video media object
 		VideoMedia media = (VideoMedia) MediaFactory.createMedia(input);
