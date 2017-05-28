@@ -135,7 +135,7 @@ public class VideoThumbnailGenerator {
 		// ***************************************************************
 		// Fill in your code here!
 		// ***************************************************************
-
+		//Quellen:https://github.com/artclarke/xuggle-xuggler/tree/master/src/com/xuggle/xuggler/demos
 		// extract frames from input video
 		if (!IVideoResampler.isSupported(IVideoResampler.Feature.FEATURE_COLORSPACECONVERSION))throw new RuntimeException("you must install the GPL version of Xuggler (with IVideoResampler" + " support) for this demo to work");
 	    //creating the container
@@ -207,13 +207,13 @@ public class VideoThumbnailGenerator {
 	                		Graphics2D w = img.createGraphics();	
 	                		w.drawRenderedImage(wm, null);
 	                		w.dispose();
-	                    	System.out.println("timestamp: " + picture.getPts()/1000000);
+	                    	//System.out.println("timestamp: " + picture.getPts()/1000000);
 	                    	//if the timespan given is 0 we always write a pic. In this case we have to compare the frames we can only compare if we already wrote a picture
 	                    	if(timespan==0 && wrotePic){
 	                    		//we compare the image with the last one
 	                    		ImageCompare compare= new ImageCompare(frames.get(frames.size()-1),img);
-	                    		//not sure what the best parameters are so i just use the default
-	                    		//compare.setParameters(12, 12, 10, 10);
+	                    		//not sure what the best parameters are, those gave me a decent amount of frames so i igured it would be ok
+	                    		compare.setParameters(12, 12, 10, 10);
 	                    		compare.compare();
 	                    		//if they are different from each other we add them to the list.
 	                    		if(!compare.match()){
@@ -249,8 +249,8 @@ public class VideoThumbnailGenerator {
 	    long startTime = System.nanoTime();
 	    System.out.println("amount of frames captured: " + frames.size());
 	    IMediaWriter writer = ToolFactory.makeWriter(outputFile.getPath());
-	    writer.addVideoStream(0, 0, vidWidth, vidHeight);
-	    System.out.println(writer.getDefaultPixelType());
+	    writer.addVideoStream(0, 0,ICodec.ID.CODEC_ID_MPEG4, vidWidth, vidHeight);
+	    //System.out.println(writer.getDefaultPixelType());
 	    int f=0;
 	    int fps=50;
 	    for(int i=0; i<frames.size()*fps;i++){

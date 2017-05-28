@@ -1,27 +1,34 @@
-------------------------------------------------
+﻿------------------------------------------------
 Assignment 2 ­ Digital Audio and Video Processing
+
 ------------------------------------------------
 
 Please answer the following questions in written form (1-2 A4 pages max.)
 
+
 -----------------------------------------------------------------
 Task 2.1: play (encoded) audio files
+
 -----------------------------------------------------------------
 
 * Describe the physical appearance of sound and how is it converted to digital sampled 
 audio. Explain how sampling works and the meaning of the terms amplitude, 
 sampling frequency, and quantization.
 
+
 ------------------------------------------------------------------------------
 Task 2.2: generate "thumbnails" from audio files
+
 ------------------------------------------------------------------------------
 
 * Why do WAV files require more storage space than MP3 files?
 
 * In the Java Sound API: what is a sample, what is a frame?
 
+
 ----------------------------------------------------------
 Task 2.3: extract/get audio metadata
+
 ----------------------------------------------------------
 
 * How is volume (i.e., how loud a sound is) reflected in analog and 
@@ -29,12 +36,14 @@ digital audio signals? Why does it make sense to perform non-uniform quantizatio
 
 * What is Pulse Code Modulation (PCM)?
 
+
 ----------------------------------------------------------
 Task 2.4: extract meta data from video files
 ----------------------------------------------------------
 
 ----------------------------------------------------------
 Task 2.5: extract frames from video files
+
 ----------------------------------------------------------
 
 * What is (de­)multiplexing? What is a codec?
@@ -42,8 +51,14 @@ Task 2.5: extract frames from video files
 * In what color space are images usually represented in video files? 
 What color space is usually used for computer images?
 
+
+Beim Multiplexen werden mehrer Datenströme zu einem zusammmengefasst und gesendet. Beim Demultiplexen werden die Datenströme wieder getrennt.
+Codec ist die kodierung von Daten bzw. Signalen die je nach Format auch (verlustbehaftete) Kompressionstechniken anwenden.
+In Videos werden Bilder in dem YUV color space präsentiert. Es ermöglicht das Bild mit geringerer Bandbreite zu übermitteln da wir nur 3 werte übermitteln müssen: Luminance und Chrominance die aus U und V zusammengesetzt ist. For Computer Images we usally use the RGB color Space.
+
 ----------------------------------------------------------
 Task 2.6: video thumbnail
+
 ----------------------------------------------------------
 
 * What is video transcoding?
@@ -51,3 +66,6 @@ Task 2.6: video thumbnail
 * Briefly describe and compare the video codecs we used in this assignment.
 
 * How does changing the configuration of the ImageCompare Object affect the thumbnail?
+Transcoding ist wenn wir ein video in ein anderes format Umwandeln.
+In unserem Projekt wird für Videos der MPEG-4 codec verwendet. Dieser kann Video und Audiodaten komprimieren. Das offiziele Format ist MP4 allerdings funktioniert es auch mit avi. MPEG-4 besteht aus vielen Teilen und ermöglicht es Anwendungen das Format zu benützen ohne alle Teile implementieren zu müssen. Man kann also unterscheidliche level von MPEG-4 verwenden.MPEG- 4 verwended die Huffmankodierung und verlustbehaftete Quantisierung.
+Der ImageCompare klasse kann man 4 Parameter übergeben. die x und y werte für das Grid die definieren in wie viele komponenten das Bild zerlegt wird, eine treshhold variable die angiebt wie groß der Helligkeitsunterschied sein darf und eine stabilisierungsvariable die eigentlich automatisch errechnet werden sollte. 
